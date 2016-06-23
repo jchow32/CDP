@@ -23,7 +23,7 @@ shinyUI(fluidPage(
     
       numericInput("num", label="Theta", min = 0, step = 0.1, value=0.5),
       
-      actionButton("submit", "Submit")
+      actionButton("Submit", "Submit")
       ),
     
     
