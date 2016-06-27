@@ -1,33 +1,41 @@
-
-
 library(shiny)
 
-
 shinyUI(fluidPage(
+  shinyjs::useShinyjs(),
+  
   titlePanel(strong("Complementary Domain Prioritization")),
   br(),
   sidebarLayout(
     sidebarPanel(
-      fileInput("file", label="WEBGESTALT INPUT", accept = '.tsv'),
+      tags$div(title="Please select a .tsv file.",
+        fileInput("web_file", label="WEBGESTALT INPUT", accept = '.tsv')),
       
       radioButtons("pathway", label = "ENRICHMENT PATHWAY", 
                    choices = list("KEGG" = "Kegg", "Transcription factor" = "TF", "WikiPathways" = "Wiki"), selected="Kegg"),
       
       br(),
       
-      fileInput("transc_file", label = "TRANSCRIPTOMIC DATA"),
+      tags$div(title="Please select a .csv file.",
+        fileInput("transc_file", label = "TRANSCRIPTOMIC DATA", accept='.csv')),
       
       tags$hr(),
       
-      radioButtons("filter", label = "INDEPENDENT FILTERING", choices = list("Mean Abundance" = 1, "Variance" = 2), selected=1),
-    
-      numericInput("num", label="Theta", min = 0, step = 0.1, value=0.5),
+      #radioButtons("filter", label = "INDEPENDENT FILTERING", choices = list("Mean Abundance" = 1, "Variance" = 2), selected=1),
+      checkboxGroupInput("filter", label = "INDEPENDENT FILTERING", choices = c("Mean Abundance" = "mean", "Variance" = "variance")),
       
-      actionButton("Submit", "Submit")
+      numericInput("Theta", label="THETA", min = 0, step = 0.1, value=0.5),
+      
+      tags$hr(),
+      
+      textInput("email", label="EMAIL RESULTS TO:"),
+      
+      actionButton("submit", "Submit")
       ),
     
     
     mainPanel(
+      #textOutput("web_file"),
+      
       h3("Stage 1: Gene List Generation"),
       h4("Enrichment Analysis with WebGestalt"),
       br(),
