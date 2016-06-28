@@ -21,7 +21,7 @@ shinyUI(fluidPage(
       tags$hr(),
       
       #radioButtons("filter", label = "INDEPENDENT FILTERING", choices = list("Mean Abundance" = 1, "Variance" = 2), selected=1),
-      checkboxGroupInput("filter", label = "INDEPENDENT FILTERING", choices = c("Mean Abundance" = "mean", "Variance" = "variance")),
+      checkboxGroupInput("filter", label = "INDEPENDENT FILTERING", choices = c("Mean Abundance" = 1, "Variance" = 2)),
       
       numericInput("Theta", label="THETA", min = 0, step = 0.1, value=0.5),
       
@@ -34,7 +34,7 @@ shinyUI(fluidPage(
     
     
     mainPanel(
-      #textOutput("web_file"),
+      # textOutput("filter"),
       
       h3("Stage 1: Gene List Generation"),
       h4("Enrichment Analysis with WebGestalt"),
