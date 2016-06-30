@@ -8,7 +8,7 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       tags$div(title="Please select a .tsv file.",
-        fileInput("web_file", label="WEBGESTALT INPUT", accept = '.tsv')),
+        fileInput("web_file", label="WEBGESTALT OUTPUT", accept = '.tsv')),
       
       radioButtons("pathway", label = "ENRICHMENT PATHWAY", 
                    choices = list("KEGG" = "Kegg", "Transcription factor" = "TF", "WikiPathways" = "Wiki"), selected="Kegg"),
@@ -16,8 +16,7 @@ shinyUI(fluidPage(
       br(),
       
       tags$div(title="Please select a .csv file.",
-        fileInput("transc_file", label = "TRANSCRIPTOMIC DATA", accept='.csv')),
-      
+        fileInput("transc_file", label = "TRANSCRIPTOMIC DATA", accept='.csv')), 
       tags$hr(),
       
       #radioButtons("filter", label = "INDEPENDENT FILTERING", choices = list("Mean Abundance" = 1, "Variance" = 2), selected=1),
@@ -45,7 +44,8 @@ data is used along with class labels to detect significant proteins at a given t
         p("Following KEGG, WikiPathways (WikiP) or TF enrichment
 analysis, the resulting pathways and gene sets are downloaded from WebGestalt as
 .tsv files. The result of this stage is a set of pathways or gene sets derived from
-proteomic data."),
+proteomic data. View an ", tags$a(href="http://freyja.cs.cofc.edu/downloads/ComplementaryDomainPrioritization/Marra_5percentFDR_kegg_protein_enrichment.tsv", "example "), "WebGestalt output file."),
+
     
       br(),
      
@@ -64,7 +64,7 @@ by WikiPathways."),
       ),
       
       p("Resulting gene lists are applied to the entire transcriptomics data set,
-thus prioritizing genes involved in pathways showing enrichment at the protein expression level and removing genes not present in these pathways."),
+thus prioritizing genes involved in pathways showing enrichment at the protein expression level and removing genes not present in these pathways. View an ", tags$a(href="http://freyja.cs.cofc.edu/downloads/ComplementaryDomainPrioritization/Catteno_array.csv", "example"), " transcriptomic data file."),
       br(),
       
       h4("Independent Filters"),
